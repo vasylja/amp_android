@@ -1,2 +1,2 @@
 # amp_android
-Android repository for our amp project
+Android repository for the AMP student project.
