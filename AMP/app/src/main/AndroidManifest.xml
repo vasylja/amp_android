@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ua.viktor.amp" >
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.TestActivity"
+            android:label="@string/title_activity_test"
+            android:parentActivityName=".activity.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ua.viktor.amp.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.DecoderActivity"
+            android:label="@string/title_activity_decoder" >
+        </activity>
+
     </application>
 
 </manifest>
