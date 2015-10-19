@@ -74,6 +74,9 @@ public class TestItemAdapter extends RecyclerView.Adapter<TestItemAdapter.ViewHo
             public void onClick(View v) {
                 if(mOnClickListener!=null){
                     mOnClickListener.onItemClick(v,getLayoutPosition());
+
+                  //  v.setClickable(false);
+
                 }
             }
         }

@@ -37,13 +37,19 @@ public class TestActivity extends AppCompatActivity {
         testItemAdapter.SetOnClickListener(new TestItemAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-         view.setBackgroundColor(getResources().getColor(R.color.cardview_shadow_start_color));
+         //view.setBackgroundColor(getResources().getColor(R.color.cardview_shadow_start_color));
 
-                    view.setClickable(false);
+                   // view.setClickable(false);
 
             }
         });
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+       // savedInstanceState.putString(STATE_USER, mUser);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
