@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
-import com.github.lzyzsd.randomcolor.RandomColor;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.ua.viktor.amp.R;
 
 /**
@@ -31,8 +31,9 @@ public class TestItemAdapter extends RecyclerView.Adapter<TestItemAdapter.ViewHo
             viewHolder.tvspecies.setText(arr[i]);
          //   Context context=viewHolder.imgThumbnail.getContext();
 
-            RandomColor randomColor = new RandomColor();
-            int color = randomColor.randomColor();
+            ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+// generate random color
+            int color = generator.getRandomColor();
             TextDrawable drawable = TextDrawable.builder()
                     .buildRound("A", color);
             viewHolder.imgThumbnail.setImageDrawable(drawable);

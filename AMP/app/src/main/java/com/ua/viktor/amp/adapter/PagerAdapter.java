@@ -27,6 +27,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 return tab1;
             case 1:
                 HistoryFragment tab2 = new HistoryFragment();
+
                 return tab2;
 
             default:

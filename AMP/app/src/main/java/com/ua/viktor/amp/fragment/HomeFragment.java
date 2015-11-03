@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ua.viktor.amp.R;
@@ -28,7 +30,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-private ImageButton mQrButton;
+    private ImageButton mQrButton;
     private Button mEnterButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,8 +51,10 @@ private ImageButton mQrButton;
         List<Choice> leaseList = leaseDao.loadAll();
        // Log.v("Size",leaseList.size()+"");
        // Log.v("GreenDao",leaseList.get(28).getQuestionId()+"");
-
-
+        TextInputLayout textInputLayout=(TextInputLayout)view.findViewById(R.id.button2);
+      //  textInputLayout.se
+        EditText editText =(EditText)view.findViewById(R.id.code);
+      //  editText.setCursorVisible(false);
 
         mQrButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +63,13 @@ private ImageButton mQrButton;
                        startActivity(intent);
             }
         });
-    mEnterButton.setOnClickListener(new View.OnClickListener() {
+       mEnterButton.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         Intent intent=new Intent(getActivity(),TestActivity.class);
         startActivity(intent);
-    }
-});
+        }
+      });
         return view;
     }
 
@@ -76,20 +80,21 @@ private ImageButton mQrButton;
         SQLiteDatabase db = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);
         DaoSession daoSession = daoMaster.newSession();
-      // insertSampleData(daoSession);
+     // insertSampleData(daoSession);
+        daoSession.clear();
 
     }
     public void insertSampleData(DaoSession daoSession) {
         Question question = new Question();
-        question.setText("LOlkal");
-      question.setId((long) 20);
+        question.setText("Question");
+      question.setId((long) 0);
 
         ArrayList<Choice> notes = new ArrayList<Choice>();
 
         for (int i = 0; i < 5; i++) {
             Choice choice=new Choice();
-            choice.setItem("a" + i);
-            choice.setQuestionId((long) 20);
+            choice.setItem("b" + i);
+            choice.setQuestionId((long) 0);
             notes.add(choice);
         }
         ChoiceDao choiceDao=daoSession.getChoiceDao();

@@ -30,8 +30,9 @@
             android:name=".activity.DecoderActivity"
             android:label="@string/title_activity_decoder" >
         </activity>
-
-
+        <activity android:name=".activity.DetailActivity"
+            android:parentActivityName=".activity.MainActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -26,7 +26,10 @@ public class TestActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-   final String []mas={"dfdf","dfdfsd"};
+       final String []mas={"dfdf","dfdfsd"};
+
+
+
         TestItemAdapter testItemAdapter=new TestItemAdapter(mas);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
