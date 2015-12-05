@@ -21,7 +21,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="What is NullPointerException?"
         android:id="@+id/textView3"
         android:layout_below="@+id/toolbart"
         android:layout_centerHorizontal="true"

@@ -8,16 +8,23 @@ import de.greenrobot.daogenerator.ToMany;
 
 public class MyDaoGenerator {
     public static void main(String args[]) throws Exception {
-        Schema schema = new Schema(3, "com.ua.viktor.amp.model");
+        Schema schema = new Schema(3, "com.ua.viktor.amp.dao");
 
         Entity question = schema.addEntity("Question");
         question.addIdProperty();
         question.addStringProperty("text").notNull();
+        question.addIntProperty("ID");
+
+        Entity answers = schema.addEntity("Answers");
+        answers.addIdProperty();
+        answers.addStringProperty("text").notNull();
+        answers.addIntProperty("ID");
 
         Entity choice = schema.addEntity("Choice");
         choice.setTableName("CHOICES");
         choice.addIdProperty();
         choice.addStringProperty("item");
+        choice.addIntProperty("ID");
         Property questionId = choice.addLongProperty("questionId").notNull().getProperty();
         choice.addToOne(question, questionId);
 

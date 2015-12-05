@@ -3,6 +3,7 @@ package com.ua.viktor.amp.adapter;
 /**
  * Created by viktor on 29.09.15.
  */
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;

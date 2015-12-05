@@ -50,10 +50,10 @@ public class DecoderActivity extends AppCompatActivity implements QRCodeReaderVi
     // "points" : points where QR control points are placed
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
-      // myTextView.setText(text);
-        Intent intent=new Intent(this,TestActivity.class);
+        // myTextView.setText(text);
+        Intent intent = new Intent(this, TestActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
+        startActivity(intent);
         this.finish();
     }
 

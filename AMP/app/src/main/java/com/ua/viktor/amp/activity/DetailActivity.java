@@ -9,12 +9,13 @@ import android.support.v7.widget.Toolbar;
 
 import com.ua.viktor.amp.R;
 import com.ua.viktor.amp.fragment.HistoryFragment;
-import com.ua.viktor.amp.fragment.PieChartFragment;
+import com.ua.viktor.amp.fragment.HistoryDetailFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
     private Fragment mCurrentFragment;
-public static String POSI=DetailActivity.class.getName();
+    public static String POSI = DetailActivity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,15 +23,15 @@ public static String POSI=DetailActivity.class.getName();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbart3);
         setSupportActionBar(toolbar);
 
-        Intent intent=getIntent();
-       int position= intent.getIntExtra(HistoryFragment.POSITION,0);
+        Intent intent = getIntent();
+        int position = intent.getIntExtra(HistoryFragment.POSITION, 0);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        mCurrentFragment = new PieChartFragment();
-        Bundle arg=new Bundle();
-        arg.putInt(POSI,position);
+        mCurrentFragment = new HistoryDetailFragment();
+        Bundle arg = new Bundle();
+        arg.putInt(POSI, position);
         FragmentManager fragmentManager = getSupportFragmentManager();
         mCurrentFragment.setArguments(arg);
         fragmentManager.beginTransaction()

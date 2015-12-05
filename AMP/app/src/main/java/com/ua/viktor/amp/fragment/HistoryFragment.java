@@ -13,24 +13,25 @@ import android.view.ViewGroup;
 import com.ua.viktor.amp.R;
 import com.ua.viktor.amp.activity.DetailActivity;
 import com.ua.viktor.amp.adapter.HistoryAdapter;
-import com.ua.viktor.amp.model.DaoMaster;
-import com.ua.viktor.amp.model.DaoSession;
-import com.ua.viktor.amp.model.Question;
-import com.ua.viktor.amp.model.QuestionDao;
+import com.ua.viktor.amp.dao.DaoMaster;
+import com.ua.viktor.amp.dao.DaoSession;
+import com.ua.viktor.amp.dao.Question;
+import com.ua.viktor.amp.dao.QuestionDao;
 
 import java.util.List;
 
 
 public class HistoryFragment extends Fragment {
 
-    private   RecyclerView mRecyclerView;
-    private   RecyclerView.LayoutManager mLayoutManager;
-    public static String POSITION=HistoryFragment.class.getName();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    public static String POSITION = HistoryFragment.class.getName();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view= inflater.inflate(R.layout.fragment_history, container, false);
+        View view = inflater.inflate(R.layout.fragment_history, container, false);
 
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getActivity(), "lease-db", null);
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -40,25 +41,26 @@ public class HistoryFragment extends Fragment {
         QuestionDao leaseDao = daoSession.getQuestionDao();
         List<Question> questionsList = leaseDao.loadAll();
 
-        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new GridLayoutManager(getActivity(), 1);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        HistoryAdapter historyAdapter=new HistoryAdapter(questionsList);
+        HistoryAdapter historyAdapter = new HistoryAdapter(questionsList);
         mRecyclerView.setAdapter(historyAdapter);
         historyAdapter.SetOnClickListener(new HistoryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 //view.setBackgroundColor(getResources().getColor(R.color.cardview_shadow_start_color));
-                Intent intent=new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra(POSITION,position);
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+            //    historyAdapter.getText().toString()
+                intent.putExtra(POSITION, position);
                 startActivity(intent);
 
                 // view.setClickable(false);
             }
         });
 
-    return view;
+        return view;
     }
 
 }
