@@ -104,8 +104,20 @@ public class HomeFragment extends Fragment {
             mEnterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getActivity(), "lease-db", null);
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    DaoMaster daoMaster = new DaoMaster(db);
+                    DaoSession daoSession = daoMaster.newSession();
+                    ChoiceDao leaseDao = daoSession.getChoiceDao();
+
                     String id = editText.getText().toString();
-                    getTestData(id);
+
+                    List<Choice> mChoices = leaseDao._queryQuestion_Question(Long.parseLong(id));
+                    if (mChoices.isEmpty()) {
+                        getTestData(id);
+                    } else {
+                        onTestDataExisted();
+                    }
                     final ProgressDialog progressDialog = new ProgressDialog(getActivity());
                     progressDialog.setIndeterminate(true);
                     progressDialog.setMessage("Request...");
@@ -132,6 +144,10 @@ public class HomeFragment extends Fragment {
         Toast.makeText(getActivity(), "Request failed", Toast.LENGTH_SHORT).show();
     }
 
+    public void onTestDataExisted() {
+        Toast.makeText(getActivity(), "Request failed,quiz exist", Toast.LENGTH_SHORT).show();
+    }
+
     public void getTestData(final String id) {
         String movieUrl = "http://192.168.57.1:3000/questions/" + id;
         if (isNetworkOn(getActivity())) {
@@ -156,6 +172,7 @@ public class HomeFragment extends Fragment {
                                          final String json = response.body().string();
                                          Log.v("JSON", json);
                                          if (!json.isEmpty()) {
+
                                              getQuestionData(json, id);
                                          }
                                          getActivity().runOnUiThread(new Runnable() {
@@ -165,6 +182,7 @@ public class HomeFragment extends Fragment {
                                                  if (!json.isEmpty()) {
                                                      Intent intent = new Intent(getActivity(), TestActivity.class);
                                                      intent.putExtra(TAG, id);
+                                                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                      startActivity(intent);
                                                  } else {
                                                      onTestDataFailed();
@@ -238,7 +256,7 @@ public class HomeFragment extends Fragment {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject jsonChoices = data.getJSONObject(i);
                 Choice choice = new Choice();
-
+                choice.setCount(0);
                 choice.setItem(jsonChoices.getString("text"));
                 choice.setID(jsonChoices.getInt("id"));
                 choice.setQuestionId(Long.parseLong(id));

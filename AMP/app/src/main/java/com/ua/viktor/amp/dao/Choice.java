@@ -12,6 +12,7 @@ public class Choice {
     private Long id;
     private String item;
     private Integer ID;
+    private Integer count;
     private long questionId;
 
     /** Used to resolve relations */
@@ -31,10 +32,11 @@ public class Choice {
         this.id = id;
     }
 
-    public Choice(Long id, String item, Integer ID, long questionId) {
+    public Choice(Long id, String item, Integer ID, Integer count, long questionId) {
         this.id = id;
         this.item = item;
         this.ID = ID;
+        this.count = count;
         this.questionId = questionId;
     }
 
@@ -66,6 +68,14 @@ public class Choice {
 
     public void setID(Integer ID) {
         this.ID = ID;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public long getQuestionId() {

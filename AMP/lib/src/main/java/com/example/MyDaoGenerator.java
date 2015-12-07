@@ -25,6 +25,7 @@ public class MyDaoGenerator {
         choice.addIdProperty();
         choice.addStringProperty("item");
         choice.addIntProperty("ID");
+        choice.addIntProperty("count");
         Property questionId = choice.addLongProperty("questionId").notNull().getProperty();
         choice.addToOne(question, questionId);
 
