@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.facebook.stetho.okhttp.StethoInterceptor;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -140,6 +141,7 @@ public class HomeFragment extends Fragment {
                     .url(movieUrl)
                     .addHeader("Accept", "application/json")
                     .build();
+            client.networkInterceptors().add(new StethoInterceptor());
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
                              @Override
